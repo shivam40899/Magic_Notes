@@ -11,7 +11,7 @@ let addBtn = document.getElementById('addBtn');
 //     $('input[type="submit"]').attr('disabled' , true);
 // } 
 
-if(document.getElementById('addTxt').addEventListener('input', function(element){
+if(document.getElementById('addTitle').addEventListener('input', function(element){
     document.getElementById('addBtn').disabled = false;
 })){
     
@@ -22,7 +22,7 @@ addBtn.addEventListener('click', function (e) {
 
     let addTxt = document.getElementById('addTxt');
 
-   
+    let addTitle = document.getElementById('addTitle');
 
     let notes = localStorage.getItem('notes');
 
@@ -34,9 +34,14 @@ addBtn.addEventListener('click', function (e) {
         
     }
 
-    notesObj.push(addTxt.value);
+    let myObj = {title : addTitle.value,
+                 text : addTxt.value
+    };
+
+    notesObj.push(myObj);
     localStorage.setItem('notes', JSON.stringify(notesObj));
     addTxt.value = '';
+    addTitle.value = '';
     document.getElementById('addBtn').disabled = true;
     
     console.log(notesObj);
@@ -64,8 +69,8 @@ function showNotes() {
 
         html += `<div class="noteCard card my-2 mx-2" style="width: 18rem;">
         <div class="card-body">
-          <h5 class="card-title">Note ${index + 1}</h5><hr>
-          <p class="card-text">${element}</p>
+          <h5 class="card-title"> ${element.title}</h5><hr>
+          <p class="card-text">${element.text}</p>
           <button id=${index} onclick='deleteNode(this.id)' class="btn btn-danger">Delete Note</button>
         </div>
       </div>
@@ -119,8 +124,8 @@ search.addEventListener('input', function(){
     let noteCards = document.getElementsByClassName('noteCard');
     Array.from(noteCards).forEach(function(element){
 
-        let cardtxt = element.getElementsByTagName('p')[0].innerText.toLowerCase();
-        if(inputVal.includes(cardtxt)){
+        let cardtxt = element.getElementsByTagName('h5')[0].innerText;
+        if(cardtxt.includes(inputVal)){
             element.style.display = 'block';
         }
         else{

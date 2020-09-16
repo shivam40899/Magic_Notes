@@ -39,10 +39,15 @@
 
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Add a Note</h5>
+        <div class="form-group">
+          <h5 class="card-title">Add Title</h5>
+          <input type="text" class="form-control" id="addTitle" aria-describedby="title">
+          <!-- //<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+        </div>
+        <h6 class="card-title">Add a Note</h6>
         <div class="mb-3">
-          
-          <textarea class="form-control" id="addTxt" placeholder="Add Here" rows='4.5' required ></textarea>
+    
+          <textarea class="form-control" id="addTxt" placeholder="Description" rows='4.5' required ></textarea>
           
         </div>
         <button id='addBtn' class="btn btn-primary " disabled>Add Note</button>
